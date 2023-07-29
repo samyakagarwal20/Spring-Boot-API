@@ -1,5 +1,8 @@
 package com.yflash.tech.SampleAPI.service;
 
-public interface UserService {
+import com.yflash.tech.SampleAPI.model.in.PutUserRequest;
+import com.yflash.tech.SampleAPI.model.out.User;
 
+public interface UserService {
+    User updateUserDetails(PutUserRequest userRequest);
 }
