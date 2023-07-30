@@ -1,10 +1,7 @@
 package com.yflash.tech.SampleAPI.entity;
 
 import com.yflash.tech.SampleAPI.common.CommonConstants;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 
@@ -15,6 +12,7 @@ import lombok.ToString;
 public class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = CommonConstants.USER_ID)
     private Integer id;
 
