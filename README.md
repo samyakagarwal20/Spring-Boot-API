@@ -1,7 +1,7 @@
 # Spring-Boot-API
 It is a sample sring boot application which demonstrates the creation and working of API using different HTTP methods like GET, POST, PUT and DELETE
 
-### Prequisites for running the application:
+### Prerequisites for running the application:
 
 ---
 Please make sure to have an active instance of MySQL DB running on your system before starting the application.
@@ -33,3 +33,21 @@ The configuration are done within the file J**DBCConfig.java**
 ---
 
 Before running the application, please locate the **USER.sql** file present in the root directory and execute the command either on your mysql client ar directly onto the MySQL workbench (the steps for accessing which are already present above)
+
+---
+
+### Overview of Content Negotiation
+Content negotiation is a process in which a client and a server communicate to agree on the format of the data that will be exchanged between them. In the context of web applications, content negotiation typically involves deciding the format of the response data, such as JSON, XML, HTML, etc., based on the preferences specified by the client in the request headers.
+
+Spring Boot provides built-in support for content negotiation through the use of ```produces``` and ```consumes``` attribute in request mapping annotations.
+
+These attributes allow you to specify the media types (formats) that a particular controller method can produce as a response.
+
+For example,
+```
+@GetMapping(value = "/get-user-by-id", produces = {"application/json ", "application/xml"}, consumes = {"application/json ", "application/xml"})
+```
+
+When sending a request from client to server, we can include an ```Accept``` header to indicate its preference for response format.
+
+In case, the client sends a request with the value of Accept header which is not included in the consumes or produces attribute, then we get an empty response with status code ```406 Not Acceptable```
