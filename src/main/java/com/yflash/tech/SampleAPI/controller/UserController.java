@@ -25,26 +25,31 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/get-all-users", produces = "application/json")
+//    @GetMapping(value = "/get-all-users", produces = "application/json")
+    @GetMapping(value = "/get-all-users", produces = {"application/json ", "application/xml"})
     ResponseEntity<List<UserEntity>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/get-user-by-id", produces = "application/json", consumes = "application/json")
+//    @GetMapping(value = "/get-user-by-id", produces = "application/json", consumes = "application/json")
+    @GetMapping(value = "/get-user-by-id", produces = {"application/json ", "application/xml"}, consumes = {"application/json ", "application/xml"})
     ResponseEntity<User> getUserById(@RequestBody GetUserRequest userRequest) {
         return new ResponseEntity<>(userService.getUserById(userRequest.getId()), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/add-user", produces = "application/json", consumes = "application/json")
+//    @PostMapping(value = "/add-user", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/add-user", produces = {"application/json ", "application/xml"}, consumes = "application/json")
     public ResponseEntity<User> addUserDetails(@RequestBody PostUserRequest userRequest) {
         return new ResponseEntity<>(userService.addUserDetails(userRequest), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/update-user-details", produces = "application/json", consumes = "application/json")
+//    @PutMapping(value = "/update-user-details", produces = "application/json", consumes = "application/json")
+    @PutMapping(value = "/update-user-details", produces = {"application/json ", "application/xml"}, consumes = "application/json")
     public ResponseEntity<User> updateUserDetails(@RequestBody PutUserRequest userRequest) {
         return new ResponseEntity<>(userService.updateUserDetails(userRequest), HttpStatus.OK);
     }
 
+//    @DeleteMapping(value = "/delete-user", produces = "text/plain", consumes = "application/json")
     @DeleteMapping(value = "/delete-user", produces = "text/plain", consumes = "application/json")
     public ResponseEntity<String> deleteUserDetails(@RequestBody DeleteUserRequest userRequest) {
         String serviceResponse = userService.deleteUserDetails(userRequest.getId());
